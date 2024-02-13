@@ -28,7 +28,7 @@ const Task: React.FC<ParentProps> = () => {
   const [tasks, setTasks] = useState<Task[]>();
   useEffect(() => {
     axios
-      .get("http://localhost:8080/tasks", {
+      .get("https://to-do-api-ivory.vercel.app/tasks", {
         headers: {
           userid: userId,
         },
@@ -41,7 +41,7 @@ const Task: React.FC<ParentProps> = () => {
       });
 
     axios
-      .get("http://localhost:8080/user/name", {
+      .get("https://to-do-api-ivory.vercel.app/user/name", {
         headers: {
           userid: sessionStorage.getItem("userId"),
         },
@@ -55,7 +55,7 @@ const Task: React.FC<ParentProps> = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:8080/tasks",
+        "https://to-do-api-ivory.vercel.app/tasks",
         {
           title: title,
           description: description,
@@ -89,7 +89,7 @@ const Task: React.FC<ParentProps> = () => {
     _id: unknown;
   }) => {
     axios
-      .delete(`http://localhost:8080/tasks/${deleteTask._id}`)
+      .delete(`https://to-do-api-ivory.vercel.app/tasks/${deleteTask._id}`)
       .then(() => {
         const deleteT = tasks?.filter((task) => task._id != deleteTask._id);
         setTasks(deleteT);
@@ -102,7 +102,7 @@ const Task: React.FC<ParentProps> = () => {
   const handleCheck = (e: ChangeEvent<HTMLInputElement>, updateTask: Task) => {
     console.log(e.target.checked);
     axios
-      .put(`http://localhost:8080/tasks/${updateTask._id}`, {
+      .put(`https://to-do-api-ivory.vercel.app/tasks/${updateTask._id}`, {
         isComplete: e.target.checked,
       })
       .then((res) => {

@@ -9,7 +9,7 @@ function SignUp() {
   const signUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/user/signup", {
+      .post("https://to-do-api-ivory.vercel.app/user/signup", {
         emailId: email,
         name: name,
         password: password,
