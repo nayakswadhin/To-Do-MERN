@@ -6,6 +6,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
 
 type Task = {
+  createDate?: string;
+  userid?: string;
   title?: string;
   description?: string;
   taskDate?: string;
@@ -16,7 +18,7 @@ type Task = {
 interface ChildProps {
   task: Task;
   tasks: Task[];
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  setTasks: React.Dispatch<React.SetStateAction<Task[] | undefined>>;
 }
 
 const style = {

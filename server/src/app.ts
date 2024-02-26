@@ -2,19 +2,20 @@ import { MongoClient } from "mongodb";
 import bodyParser from "body-parser";
 import express from "express";
 import cors from "cors";
+import "dotenv/config";
 
 async function start() {
   try {
     const app = express();
     app.use(
       cors({
-        origin: "http://localhost:5173",
+        origin: "*",
         optionsSuccessStatus: 200,
         credentials: true,
       })
     );
     const mongo = await MongoClient.connect(
-      "mongodb+srv://todoapp:e8kObIIvoyINjC3s@cluster0.nkvs1h3.mongodb.net/?retryWrites=true&w=majority"
+      process.env.MONGODB_URL ? process.env.MONGODB_URL : ""
     );
     //e8kObIIvoyINjC3s
     await mongo.connect();
@@ -32,8 +33,8 @@ async function start() {
     app.use("/user", require("./routes/user"));
     app.use("/", require("./routes/task"));
 
-    app.listen(8080, () => {
-      console.log(`APP is listening in port:${8080}`);
+    app.listen(process.env.PORT, () => {
+      console.log(`APP is listening in port:${process.env.PORT}`);
     });
   } catch (error) {
     console.log(error);

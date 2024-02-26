@@ -15,7 +15,7 @@ export type Task = {
   _id: string;
 };
 interface ParentProps {
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  setTasks: React.Dispatch<React.SetStateAction<Task[] | undefined>>;
 }
 
 const Task: React.FC<ParentProps> = () => {
